@@ -4,12 +4,79 @@
     "title": "Downtown Villa",
     "description": "3BR villa with pool",
     "price": 70000000,
-    "status": "available",
-    "agentId": "user-uuid-2",
+    "currency": "AED",
+    "status": "available", 
+    "listingType": "secondary",  
+    "bedrooms": 3,
+    "bathrooms": 4,
+    "area": 3500,
+    "areaUnit": "sqft",
+    "propertyType": "villa",  
+    "furnishing": "unfurnished",  
+    "ownership": "freehold", 
+    "handoverDate": null,
+    "paymentPlan": null,
+    "downPayment": null,
+    "installments": null,
+    "developer": null,
+    "reraPermit": "123456789",
+    "location": {
+      "city": "Dubai",
+      "community": "Downtown",
+      "district": "Burj Khalifa District",
+      "latitude": 25.1972,
+      "longitude": 55.2744,
+      "address": "123 Downtown Blvd"
+    },
+    "features": [
+      "private pool",
+      "maid room",
+      "balcony",
+      "covered parking",
+      "central AC"
+    ],
     "images": [
       "url1.jpg",
       "url2.jpg"
     ],
+    "videoUrl": null,
+    "virtualTourUrl": null,
+    "floorPlanUrl": null,
+    "threeDModelUrl": "https://example.com/models/villa123.glb",
+    
+    
+    "assignedTo": {
+      "userId": "user-uuid-5",
+      "name": "John Smith"
+    },
+    "leadStatus": "follow-up", 
+    "priority": "high",        
+    "notes": [
+      {
+        "noteId": "note-uuid-1",
+        "content": "Client is interested, follow up after Eid.",
+        "createdBy": "user-uuid-3",
+        "createdAt": "2025-05-04T12:00:00Z"
+      }
+    ],
+    "source": "Facebook Ads",  
+    "lastContacted": "2025-05-04T10:30:00Z",
+    "followUpDate": "2025-05-10T00:00:00Z",
+    "tags": ["VIP", "urgent", "cash buyer"],
+    "reminders": [
+      {
+        "reminderId": "reminder-uuid-1",
+        "title": "Call client for viewing confirmation",
+        "dueDate": "2025-05-07T09:00:00Z"
+      }
+    ],
+
+    "agentId": "user-uuid-2",
+    "agency": {
+      "id": "agency-uuid-1",
+      "name": "Planet Land Co.",
+      "license": "BR123456"
+    },
     "createdAt": "2025-05-04T00:00:00Z",
     "updatedAt": "2025-05-04T17:58:24.225Z"
   }
