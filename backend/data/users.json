@@ -1,0 +1,16 @@
+[
+  {
+    "id": "user-uuid-1",
+    "email": "admin@fabrica.com",
+    "passwordHash": "<bcrypt-hash>",
+    "roleId": "role-uuid-1",
+    "createdAt": "2025-05-04T00:00:00Z"
+  },
+  {
+    "id": "c16e348d-a599-467d-97bb-e8927ed76a94",
+    "email": "abdalla@fabrica.com",
+    "passwordHash": "$2b$10$zVkUOwfkiGAWuFowBxFQGeBNErGwqDkDWLaWJK4Of36liX/HO9T9G",
+    "roleId": "role-uuid-1",
+    "createdAt": "2025-05-04T17:43:29.269Z"
+  }
+]

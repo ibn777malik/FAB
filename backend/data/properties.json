@@ -1,0 +1,16 @@
+[
+  {
+    "id": "prop-uuid-1",
+    "title": "Downtown Villa",
+    "description": "3BR villa with pool",
+    "price": 70000000,
+    "status": "available",
+    "agentId": "user-uuid-2",
+    "images": [
+      "url1.jpg",
+      "url2.jpg"
+    ],
+    "createdAt": "2025-05-04T00:00:00Z",
+    "updatedAt": "2025-05-04T17:58:24.225Z"
+  }
+]

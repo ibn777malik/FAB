@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Add to globals.css */
+.icon-sm {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .icon-md {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .feature-icon-container {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .property-image {
+    max-height: 12rem;
+    object-fit: cover;
+  }
+  
+  /* Ensure SVG icons don't grow too large */
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  /* Add these styles to your globals.css or create a styles/image-sizing.css file */
+
+/* Property card images */
+.property-card-image {
+    height: 200px !important; /* Fixed height */
+    width: 100% !important;
+    object-fit: cover !important;
+    max-height: 200px !important; /* Maximum height constraint */
+  }
+  
+  /* Location card images */
+  .location-card-image {
+    height: 180px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+  
+  /* Testimonial profile images */
+  .testimonial-profile-image {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+  }
+  
+  /* Set max dimensions for all images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Avatar images */
+  .avatar-image {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+  }
+  /* Add these styles to your globals.css */
+
+/* Force ALL images to have controlled sizing */
+img {
+    max-width: 100% !important;
+    max-height: 500px !important; /* Maximum absolute height for any image */
+  }
+  
+  /* Hero section background image */
+  .hero-bg-image {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    max-height: none !important; /* Allow full height in hero */
+  }
+  
+  /* Property card images - strict sizing */
+  .property-card-image {
+    height: 200px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  
+  /* Location card images - strict sizing */
+  .location-card-image {
+    height: 180px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+  
+  /* Featured section images */
+  .featured-image {
+    height: 220px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+  
+  /* Service section icons - keep these small */
+  .service-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  /* Avatar/testimonial images */
+  .avatar-image {
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+  }
+  
+  /* Adjust SVG icons */
+  svg {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* Fix specific icon container sizes */
+  .icon-container {
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  /* Add these styles to your globals.css */
+
+/* Service cards centering */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .service-card {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Locations grid centering */
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .location-card {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  /* Testimonials centering */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .testimonial-card {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Contact section centering */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .contact-info, .contact-form {
+    width: 100%;
+  }
+  
+  /* Footer centering */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  @media (max-width: 640px) {
+    .footer-grid {
+      text-align: center;
+    }
+  }
+  
+  /* Section headers centering */
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+  }

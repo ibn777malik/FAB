@@ -1,0 +1,6 @@
+{
+    "paginationSize": 20,
+    "jwtSecret": "V3rS3cr3t_2025@CRY$tr0ng!JwT_$tr0ng!JwT_M#f@br1c@",
+    "tokenExpiry": "24h"
+  }
+  

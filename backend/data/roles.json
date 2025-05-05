@@ -1,0 +1,13 @@
+[
+    {
+      "id": "role-uuid-1",
+      "name": "admin",
+      "permissions": [ "users:read", "users:write", "properties:read", "properties:write" ]
+    },
+    {
+      "id": "role-uuid-2",
+      "name": "agent",
+      "permissions": [ "properties:read", "properties:write" ]
+    }
+  ]
+  
