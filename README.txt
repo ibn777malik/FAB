@@ -1,4 +1,4 @@
-# Fabrica Real Estate Website + CRM
+
 
 A modern real estate platform with both public-facing website for property listings and an admin CRM system for property management.
 
