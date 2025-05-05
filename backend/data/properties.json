@@ -5,15 +5,15 @@
     "description": "3BR villa with pool",
     "price": 70000000,
     "currency": "AED",
-    "status": "available", 
-    "listingType": "secondary",  
-    "bedrooms": 3,
-    "bathrooms": 4,
+    "status": "available",
+    "listingType": "secondary",
+    "bedrooms": 7,
+    "bathrooms": 3,
     "area": 3500,
     "areaUnit": "sqft",
-    "propertyType": "villa",  
-    "furnishing": "unfurnished",  
-    "ownership": "freehold", 
+    "propertyType": "villa",
+    "furnishing": "unfurnished",
+    "ownership": "freehold",
     "handoverDate": null,
     "paymentPlan": null,
     "downPayment": null,
@@ -39,18 +39,16 @@
       "url1.jpg",
       "url2.jpg"
     ],
-    "videoUrl": null,
+    "videoUrl": "",
     "virtualTourUrl": null,
-    "floorPlanUrl": null,
+    "floorPlanUrl": "",
     "threeDModelUrl": "https://example.com/models/villa123.glb",
-    
-    
     "assignedTo": {
       "userId": "user-uuid-5",
       "name": "John Smith"
     },
-    "leadStatus": "follow-up", 
-    "priority": "high",        
+    "leadStatus": "follow-up",
+    "priority": "high",
     "notes": [
       {
         "noteId": "note-uuid-1",
@@ -59,10 +57,16 @@
         "createdAt": "2025-05-04T12:00:00Z"
       }
     ],
-    "source": "Facebook Ads",  
+    "source": "Facebook Ads",
     "lastContacted": "2025-05-04T10:30:00Z",
-    "followUpDate": "2025-05-10T00:00:00Z",
-    "tags": ["VIP", "urgent", "cash buyer"],
+    "followUpDate": "2025-05-10T00:00:00.000Z",
+    "tags": [
+      "VIP",
+      "urgent",
+      "cash buyer",
+      "End user",
+      "Negotiable"
+    ],
     "reminders": [
       {
         "reminderId": "reminder-uuid-1",
@@ -70,7 +74,6 @@
         "dueDate": "2025-05-07T09:00:00Z"
       }
     ],
-
     "agentId": "user-uuid-2",
     "agency": {
       "id": "agency-uuid-1",
@@ -78,6 +81,6 @@
       "license": "BR123456"
     },
     "createdAt": "2025-05-04T00:00:00Z",
-    "updatedAt": "2025-05-04T17:58:24.225Z"
+    "updatedAt": "2025-05-05T14:18:54.855Z"
   }
 ]

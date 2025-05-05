@@ -1,7 +1,8 @@
 // backend/src/server.js
 const express = require('express')
 const { loadJson } = require('./dao/jsonDao')
-const cors = require('cors')      
+const cors = require('cors')
+const path = require('path')
 
 // Create the Express app
 const app = express()
@@ -12,6 +13,7 @@ const authRoutes = require('./routes/auth')
 const authMiddleware = require('./middleware/authMiddleware')
 const rolesRoutes = require('./routes/roles')
 const propertiesRoutes = require('./routes/properties')
+const uploadRoutes = require('./routes/upload')
 
 // Add CORS middleware *before* any routes:
 app.use(cors({ 
@@ -21,6 +23,11 @@ app.use(cors({
 
 // Middlewares
 app.use(express.json())  // parse JSON bodies (only need this once)
+
+// Serve static files from upload directories
+app.use('/images', express.static(path.join(__dirname, '../data/upload/images')))
+app.use('/videos', express.static(path.join(__dirname, '../data/upload/videos')))
+app.use('/files', express.static(path.join(__dirname, '../data/upload/files')))
 
 // Public endpoints
 app.get('/', (req, res) => res.send('Welcome to the CRM API'))
@@ -52,6 +59,9 @@ app.use('/api/roles', authMiddleware, rolesRoutes)
 // Use the protected property routes for all other property operations
 // This will only apply to POST, PUT, DELETE since we've handled GET separately
 app.use('/api/properties', authMiddleware, propertiesRoutes)
+
+// Upload routes
+app.use('/api/upload', uploadRoutes)
 
 // Start server
 app.listen(PORT, () => console.log(`🚀 Backend running on http://localhost:${PORT}`))
