@@ -167,7 +167,6 @@ const HomePage = () => {
   const [locationFilter, setLocationFilter] = useState('');
   const [priceRange, setPriceRange] = useState([0, 10000000]);
   const [scrollY, setScrollY] = useState(0);
-  // Add mobile menu state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Refs
@@ -204,7 +203,7 @@ const HomePage = () => {
       beds: 5,
       baths: 6,
       area: 7200,
-      image: "/images/57a771b1-a9b5-4d05-8dd3-3043fc60e81a.jpg"
+      image: "/images/e44da0d6-c658-495d-85d6-529839c2becd.jpeg"
     },
     {
       id: 2,
@@ -214,7 +213,7 @@ const HomePage = () => {
       beds: 3,
       baths: 3.5,
       area: 2100,
-      image: "https://via.placeholder.com/600x400"
+      image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DownTown.jpg`
     },
     {
       id: 3,
@@ -224,7 +223,7 @@ const HomePage = () => {
       beds: 4,
       baths: 4.5,
       area: 3800,
-      image: "https://via.placeholder.com/600x400"
+      image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Marina.jpg`
     }
   ];
   
@@ -440,184 +439,8 @@ const HomePage = () => {
 
       {/* Main Content Container */}
       <div className="relative z-10">
-  return (
-    <div className="font-sans bg-gray-50">
-      {/* Loading Screen */}
-      <AnimatePresence>
-        {!isLoaded && (
-          <motion.div 
-            className="fixed inset-0 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center z-50"
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div 
-              className="text-white text-4xl font-bold flex items-center"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <div className="mr-3 w-12 h-12 bg-white rounded-lg"></div>
-              FABRICA
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {/* Clean, well-structured layout with right-aligned navigation */}
-      <div className="min-h-screen bg-white font-sans">
-
-{/* Header with fixed navigation */}
-<header className={`fixed w-full top-0 left-0 right-0 z-40 transition-all duration-300 ${
-  scrollY > 50 ? 'bg-black bg-opacity-90 backdrop-blur-sm py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent py-6'
-}`}>
-  <div className="container mx-auto px-6">
-    <div className="flex items-center justify-between">
-      {/* Logo */}
-      <motion.div 
-        className="flex items-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="w-10 h-10 bg-[#c7a565] rounded-lg mr-3 relative overflow-hidden">
-          <div className="absolute inset-0 bg-white opacity-10"></div>
-        </div>
-        <span className="text-2xl font-bold text-white">
-          FABRICA
-        </span>
-      </motion.div>
-      
-      {/* Navigation */}
-      <motion.nav 
-        className="bg-black bg-opacity-40 backdrop-blur-sm py-3 px-8 rounded-full border border-[#c7a565]/20"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <ul className="flex items-center space-x-16">
-          <li>
-            <Link href="/" className="text-white font-medium hover:text-[#c7a565] transition-colors px-4 py-2">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/properties" className="text-white font-medium hover:text-[#c7a565] transition-colors px-4 py-2">
-              Properties
-            </Link>
-          </li>
-          <li>
-            <Link 
-              href="/login" 
-              className="bg-[#c7a565] text-black px-8 py-3 rounded-full hover:shadow-[0_0_15px_rgba(199,165,101,0.5)] transition-all inline-block font-medium"
-            >
-              Sign In
-            </Link>
-          </li>
-        </ul>
-      </motion.nav>
-      
-      {/* Mobile Menu Button - hidden on larger screens */}
-      <div className="lg:hidden">
-        <button className="text-white hover:text-[#c7a565] transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-
-{/* Mobile Menu - shown only when mobile menu is open */}
-{isMobileMenuOpen && (
-  <motion.div 
-    className="fixed inset-0 z-50 bg-black px-6 py-20 overflow-y-auto lg:hidden"
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.3 }}
-  >
-    <div className="flex flex-col space-y-8">
-      {/* Close Button */}
-      <div className="absolute top-6 right-6">
-        <button 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="text-white hover:text-[#c7a565] transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      
-      {/* Logo */}
-      <div className="flex items-center">
-        <div className="w-10 h-10 bg-[#c7a565] rounded-lg mr-3"></div>
-        <span className="text-2xl font-bold text-white">FABRICA</span>
-      </div>
-      
-      {/* Mobile Navigation */}
-      <nav className="flex flex-col space-y-6">
-        <Link 
-          href="/" 
-          className="text-white text-xl font-medium hover:text-[#c7a565] transition-colors py-2"
-        >
-          Home
-        </Link>
-        <Link 
-          href="/properties" 
-          className="text-white text-xl font-medium hover:text-[#c7a565] transition-colors py-2"
-        >
-          Properties
-        </Link>
-        <Link 
-          href="/login" 
-          className="bg-[#c7a565] text-black text-center px-8 py-3 rounded-full hover:shadow-[0_0_15px_rgba(199,165,101,0.5)] transition-all font-medium mt-4"
-        >
-          Sign In
-        </Link>
-      </nav>
-      
-      {/* Mobile Contact */}
-      <div className="border-t border-[#c7a565]/20 pt-8">
-        <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
-        <div className="space-y-4 text-gray-400">
-          <p className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-[#c7a565]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            +971 4 123 4567
-          </p>
-          <p className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-[#c7a565]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            info@fabricarealestate.com
-          </p>
-        </div>
-      </div>
-      
-      {/* Social Icons */}
-      <div className="flex space-x-4">
-        {[
-          { icon: "fab fa-facebook-f", url: "#" },
-          { icon: "fab fa-twitter", url: "#" },
-          { icon: "fab fa-instagram", url: "#" },
-          { icon: "fab fa-linkedin-in", url: "#" }
-        ].map((social, index) => (
-          <a 
-            key={index}
-            href={social.url}
-            className="w-10 h-10 bg-[#c7a565]/20 text-[#c7a565] rounded-full flex items-center justify-center transition-colors hover:bg-[#c7a565] hover:text-black"
-          >
-            <i className={social.icon}></i>
-          </a>
-        ))}
-      </div>
-    </div>
-  </motion.div>
-)}
-
-     {/* Hero Section */}
-     <section className="relative h-screen bg-black overflow-hidden flex items-center">
+        {/* Hero Section */}
+        <section className="relative h-screen bg-black overflow-hidden flex items-center">
           {/* Background Image with Overlay - we're using only black background */}
           <div className="absolute inset-0 z-0 bg-black"></div>
           
@@ -735,9 +558,7 @@ const HomePage = () => {
           </div>
         </section>
 
-  {/* Rest of the page content... */}
-</div>
-   {/* Featured Properties Section with Centered Cards */}
+  {/* Featured Properties Section */}
 <section className="py-20 px-6 bg-black">
   <div className="container mx-auto">
     <motion.div 
@@ -763,7 +584,7 @@ const HomePage = () => {
           beds: 5,
           baths: 6,
           area: 7200,
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/beachfront.jpg`
+          image: "/images/e44da0d6-c658-495d-85d6-529839c2becd.jpeg"
         },
         {
           id: 2,
@@ -773,7 +594,7 @@ const HomePage = () => {
           beds: 3,
           baths: 3.5,
           area: 2100,
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DownTown.jpg`
+          image: "https://via.placeholder.com/600x400"
         },
         {
           id: 3,
@@ -783,7 +604,7 @@ const HomePage = () => {
           beds: 4,
           baths: 4.5,
           area: 3800,
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Marina.jpg`
+          image: "https://via.placeholder.com/600x400"
         }
       ].map((property, index) => (
         <motion.div 
@@ -866,7 +687,7 @@ const HomePage = () => {
   </div>
 </section>
       
-     {/* Services Section with Centered Grid */}
+{/* Services Section with Centered Grid */}
 <section className="py-20 bg-black">
   <div className="container mx-auto px-6">
     <motion.div 
@@ -950,7 +771,7 @@ const HomePage = () => {
   </div>
 </section>
       
-    {/* Locations Section with Centered Grid */}
+  {/* Locations Section with Centered Grid */}
 <section className="py-20 px-6 bg-black">
   <div className="container mx-auto">
     <motion.div 
@@ -970,22 +791,22 @@ const HomePage = () => {
       {[
         {
           name: "Palm Jumeirah",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/PalmJumeirah.jpg`,
+          image: "/images/e44da0d6-c658-495d-85d6-529839c2becd.jpeg",
           properties: 24
         },
         {
           name: "Downtown Dubai",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DownTownDubai.jpg`,
+          image: "https://via.placeholder.com/600x400",
           properties: 18
         },
         {
           name: "Dubai Marina",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DubaiMarina.jpg`,
+          image: "https://via.placeholder.com/600x400",
           properties: 32
         },
         {
           name: "Jumeirah Beach",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/JumeirahBeach.jpg`,
+          image: "https://via.placeholder.com/600x400",
           properties: 15
         }
       ].map((location, index) => (
@@ -1038,45 +859,45 @@ const HomePage = () => {
   </div>
 </section>
       
-       {/* Stats Section */}
-       <section className="py-20 bg-black text-white">
+   {/* Stats Section */}
+<section className="py-20 bg-black text-white">
+  <motion.div 
+    className="container mx-auto px-6"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+  >
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      {[
+        { number: "500+", label: "Properties Sold" },
+        { number: "98%", label: "Client Satisfaction" },
+        { number: "15+", label: "Years Experience" },
+        { number: "24/7", label: "Customer Support" }
+      ].map((stat, index) => (
+        <motion.div 
+          key={index}
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.2 }}
+        >
           <motion.div 
-            className="container mx-auto px-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            className="text-5xl lg:text-6xl font-bold mb-4 text-[#c7a565]"
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              {[
-                { number: "500+", label: "Properties Sold" },
-                { number: "98%", label: "Client Satisfaction" },
-                { number: "15+", label: "Years Experience" },
-                { number: "24/7", label: "Customer Support" }
-              ].map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  className="text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                >
-                  <motion.div 
-                    className="text-5xl lg:text-6xl font-bold mb-4 text-[#c7a565]"
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
-                  >
-                    {stat.number}
-                  </motion.div>
-                  <div className="text-lg opacity-80">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
+            {stat.number}
           </motion.div>
-        </section>
+          <div className="text-lg opacity-80">{stat.label}</div>
+        </motion.div>
+      ))}
+    </div>
+  </motion.div>
+</section>
       
-    {/* Testimonials with Centered Grid */}
+   {/* Testimonials with Centered Grid */}
 <section className="py-20 px-6 bg-black">
   <div className="container mx-auto">
     <motion.div 
@@ -1095,21 +916,21 @@ const HomePage = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {[
         {
-          name: "Billie Eilish",
+          name: "Sarah Johnson",
           role: "Property Buyer",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Bille.jpg`,
+          image: "https://via.placeholder.com/150",
           quote: "The team at Fabrica has helped me build a valuable property portfolio. Their market knowledge and investment advice is exceptional."
         },
         {
-          name: "Leonardo DiCaprio",
+          name: "Michael Chen",
           role: "Property Investor",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Leo.jpg`,
+          image: "https://via.placeholder.com/150",
           quote: "I was amazed at how quickly they sold my property for above asking price. Their marketing strategy and negotiation skills are second to none."
         },
         {
-          name: "Johnny Depp",
+          name: "Sophia Martinez",
           role: "Property Seller",
-          image: `${process.env.NEXT_PUBLIC_API_BASE}/images/John.jpg`,
+          image: "https://via.placeholder.com/150",
           quote: "Working with Fabrica Real Estate was a fantastic experience. They found my dream home within my budget and their professionalism made the process effortless."
         }
       ].map((testimonial, index) => (
@@ -1156,7 +977,7 @@ const HomePage = () => {
   </div>
 </section>
       
-   {/* Contact & Footer with Center Alignment */}
+  {/* Contact & Footer with Center Alignment */}
 <section className="py-20 px-6 bg-black">
   <div className="container mx-auto">
     <motion.div 
@@ -1222,19 +1043,14 @@ const HomePage = () => {
         <div className="mt-12">
           <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
           <div className="flex space-x-4">
-            {[
-              { icon: "fab fa-facebook-f", url: "#" },
-              { icon: "fab fa-twitter", url: "#" },
-              { icon: "fab fa-instagram", url: "#" },
-              { icon: "fab fa-linkedin-in", url: "#" }
-            ].map((social, index) => (
+            {['facebook', 'twitter', 'instagram', 'linkedin'].map((social, index) => (
               <motion.a 
                 key={index}
-                href={social.url}
+                href="#"
                 className="w-10 h-10 bg-[#c7a565]/20 text-[#c7a565] rounded-full flex items-center justify-center transition-colors hover:bg-[#c7a565] hover:text-black"
                 whileHover={{ y: -5 }}
               >
-                <i className={social.icon}></i>
+                <i className={`fab fa-${social}`}></i>
               </motion.a>
             ))}
           </div>
@@ -1309,7 +1125,7 @@ const HomePage = () => {
   </div>
 </section>
       
-   {/* Footer */}
+ {/* Footer */}
 <footer className="bg-black text-white py-16 border-t border-[#c7a565]/20">
   <div className="container mx-auto px-6">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -1376,20 +1192,24 @@ const HomePage = () => {
   </div>
 </footer>
       
-      {/* Back to Top Button */}
-      <motion.button
-        className={`fixed bottom-8 right-8 w-12 h-12 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center z-30 ${scrollY > 300 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ duration: 0.2 }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-      </motion.button>
+   
+{/* Back to Top Button */}
+<motion.button
+  className={`fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[#c7a565] text-black shadow-lg flex items-center justify-center z-30 ${
+    scrollY > 300 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+  }`}
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.9 }}
+  transition={{ duration: 0.2 }}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+</motion.button>
     </div>
-    );
-  };
-  
-  export default HomePage;
+    </div>
+  );
+};
+
+export default HomePage;
