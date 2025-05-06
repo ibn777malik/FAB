@@ -45,7 +45,7 @@ const HomePage = () => {
       beds: 5,
       baths: 6,
       area: 7200,
-      image: "https://via.placeholder.com/600x400"
+      image: "/images/57a771b1-a9b5-4d05-8dd3-3043fc60e81a.jpg"
     },
     {
       id: 2,
@@ -281,37 +281,37 @@ const HomePage = () => {
     
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {[
-        {
-          id: 1,
-          title: "Luxury Beachfront Villa",
-          location: "Palm Jumeirah",
-          price: 7500000,
-          beds: 5,
-          baths: 6,
-          area: 7200,
-          image: "https://via.placeholder.com/600x400"
-        },
-        {
-          id: 2,
-          title: "Modern Downtown Apartment",
-          location: "Downtown Dubai",
-          price: 3200000,
-          beds: 3,
-          baths: 3.5,
-          area: 2100,
-          image: "https://via.placeholder.com/600x400"
-        },
-        {
-          id: 3,
-          title: "Exclusive Marina Penthouse",
-          location: "Dubai Marina",
-          price: 5800000,
-          beds: 4,
-          baths: 4.5,
-          area: 3800,
-          image: "https://via.placeholder.com/600x400"
-        }
-      ].map((property, index) => (
+  {
+    id: 1,
+    title: "Luxury Beachfront Villa",
+    location: "Palm Jumeirah",
+    price: 7500000,
+    beds: 5,
+    baths: 6,
+    area: 7200,
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/beachfront.jpg`  // Add API base URL
+  },
+  {
+    id: 2,
+    title: "Modern Downtown Apartment",
+    location: "Downtown Dubai",
+    price: 3200000,
+    beds: 3,
+    baths: 3.5,
+    area: 2100,
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DownTown.jpg`  // Add API base URL
+  },
+  {
+    id: 3,
+    title: "Exclusive Marina Penthouse",
+    location: "Dubai Marina",
+    price: 5800000,
+    beds: 4,
+    baths: 4.5,
+    area: 3800,
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Marina.jpg`  // Add API base URL
+  }
+].map((property, index) => (
         <motion.div 
           key={property.id}
           className="bg-white rounded-xl overflow-hidden shadow-lg group mx-auto max-w-sm"
@@ -483,27 +483,27 @@ const HomePage = () => {
     
     <div className="locations-grid">
       {[
-        {
-          name: "Palm Jumeirah",
-          image: "https://via.placeholder.com/600x400",
-          properties: 24
-        },
-        {
-          name: "Downtown Dubai",
-          image: "https://via.placeholder.com/600x400",
-          properties: 18
-        },
-        {
-          name: "Dubai Marina",
-          image: "https://via.placeholder.com/600x400",
-          properties: 32
-        },
-        {
-          name: "Jumeirah Beach",
-          image: "https://via.placeholder.com/600x400",
-          properties: 15
-        }
-      ].map((location, index) => (
+  {
+    name: "Palm Jumeirah",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/PalmJumeirah.jpg`,  // Updated path
+    properties: 24
+  },
+  {
+    name: "Downtown Dubai",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DownTownDubai.jpg`,  // Updated path
+    properties: 18
+  },
+  {
+    name: "Dubai Marina",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/DubaiMarina.jpg`,  // Updated path
+    properties: 32
+  },
+  {
+    name: "Jumeirah Beach",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/JumeirahBeach.jpg`,  // Updated path
+    properties: 15
+  }
+].map((location, index) => (
         <motion.div 
   key={index}
   className="location-card group cursor-pointer"
@@ -602,25 +602,25 @@ const HomePage = () => {
     
     <div className="testimonials-grid">
       {[
-        {
-          name: "Sarah Johnson",
-          role: "Property Buyer",
-          image: "https://via.placeholder.com/100",
-          quote: "The team at Fabrica has helped me build a valuable property portfolio. Their market knowledge and investment advice is exceptional."
-        },
-        {
-          name: "David Thompson",
-          role: "Property Investor",
-          image: "https://via.placeholder.com/100",
-          quote: "I was amazed at how quickly they sold my property for above asking price. Their marketing strategy and negotiation skills are second to none."
-        },
-        {
-          name: "Maria Rodriguez",
-          role: "Property Seller",
-          image: "https://via.placeholder.com/100",
-          quote: "Working with Fabrica Real Estate was a fantastic experience. They found my dream home within my budget and their professionalism made the process effortless."
-        }
-      ].map((testimonial, index) => (
+  {
+    name: "Billie Eilish",
+    role: "Property Buyer",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Bille.jpg`,  // Updated path
+    quote: "The team at Fabrica has helped me build a valuable property portfolio. Their market knowledge and investment advice is exceptional."
+  },
+  {
+    name: "Leonardo DiCaprio",
+    role: "Property Investor",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/Leo.jpg`,  // Updated path
+    quote: "I was amazed at how quickly they sold my property for above asking price. Their marketing strategy and negotiation skills are second to none."
+  },
+  {
+    name: "Johnny Depp",
+    role: "Property Seller",
+    image: `${process.env.NEXT_PUBLIC_API_BASE}/images/John.jpg`,  // Updated path
+    quote: "Working with Fabrica Real Estate was a fantastic experience. They found my dream home within my budget and their professionalism made the process effortless."
+  }
+].map((testimonial, index) => (
         <motion.div 
           key={index}
           className="testimonial-card"
@@ -797,7 +797,7 @@ const HomePage = () => {
         </div>
         
         <p className="text-gray-400 mb-6">
-          Fabrica Real Estate provides premium property solutions in Dubai's most desirable locations.
+          Fabrica Real Estate provides premium property solutions in Dubais most desirable locations.
         </p>
         
         <div className="flex justify-center md:justify-start space-x-4">

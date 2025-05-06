@@ -36,8 +36,7 @@
       "central AC"
     ],
     "images": [
-      "url1.jpg",
-      "url2.jpg"
+      "/images/e44da0d6-c658-495d-85d6-529839c2becd.jpeg"
     ],
     "videoUrl": "",
     "virtualTourUrl": null,
@@ -65,7 +64,9 @@
       "urgent",
       "cash buyer",
       "End user",
-      "Negotiable"
+      "Negotiable",
+      "First-time buyer",
+      "International"
     ],
     "reminders": [
       {
@@ -81,6 +82,6 @@
       "license": "BR123456"
     },
     "createdAt": "2025-05-04T00:00:00Z",
-    "updatedAt": "2025-05-05T14:18:54.855Z"
+    "updatedAt": "2025-05-06T09:53:01.912Z"
   }
 ]
