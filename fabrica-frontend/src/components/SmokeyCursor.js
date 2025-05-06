@@ -17,8 +17,6 @@ const SmokeyCursor = () => {
     };
     
     resizeCanvas();
-    
-    // Handle window resize
     window.addEventListener('resize', resizeCanvas);
     
     // Particle class for smoke effect
@@ -73,7 +71,7 @@ const SmokeyCursor = () => {
     let lastMouseY = 0;
     
     // Track mouse movement across the entire document
-    const mouseMoveHandler = (e) => {
+    const handleMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       isMouseMoving = true;
@@ -98,7 +96,37 @@ const SmokeyCursor = () => {
       lastMouseY = mouseY;
     };
     
-    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mousemove', handleMouseMove);
+    
+    // Touch support for mobile devices
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      if (touch) {
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+        isMouseMoving = true;
+        
+        // Similar logic as mousemove but with fewer particles for performance
+        const moveDistance = Math.sqrt(
+          Math.pow(mouseX - lastMouseX, 2) + 
+          Math.pow(mouseY - lastMouseY, 2)
+        );
+        
+        const particlesToCreate = Math.min(Math.floor(moveDistance / 10), 3);
+        
+        for (let i = 0; i < particlesToCreate; i++) {
+          const offsetX = Math.random() * 10 - 5;
+          const offsetY = Math.random() * 10 - 5;
+          particles.push(new Particle(mouseX + offsetX, mouseY + offsetY));
+        }
+        
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+      }
+    };
+    
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
     
     // Animation loop
     let animationFrameId;
@@ -141,7 +169,8 @@ const SmokeyCursor = () => {
     // Cleanup function
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('touchmove', handleTouchMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -155,8 +184,8 @@ const SmokeyCursor = () => {
         left: 0,
         width: '100%',
         height: '100%',
-        zIndex: 0,
-        pointerEvents: 'none' // Allow clicking through the canvas
+        zIndex: 5,
+        pointerEvents: 'none'
       }}
     />
   );

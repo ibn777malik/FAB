@@ -1,184 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-
-// Canvas component for smoke effect
-const SmokeCanvas = () => {
-  const canvasRef = useRef(null);
-  
-  useEffect(() => {
-    // Ensure canvas and context are available
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Set canvas dimensions to match window
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    
-    // Particle class for smoke effect
-    class Particle {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 15 + 5;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-        this.opacity = Math.random() * 0.5 + 0.1;
-        this.life = 100;
-      }
-      
-      // Update particle position and properties
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.size = Math.max(0, this.size - 0.1);
-        this.life -= 1;
-        this.opacity -= 0.003;
-      }
-      
-      // Draw particle on canvas
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        
-        // Gold colors for smoke
-        const gradient = ctx.createRadialGradient(
-          this.x, this.y, 0,
-          this.x, this.y, this.size
-        );
-        
-        gradient.addColorStop(0, `rgba(199, 165, 101, ${this.opacity})`);
-        gradient.addColorStop(0.5, `rgba(217, 184, 124, ${this.opacity * 0.6})`);
-        gradient.addColorStop(1, `rgba(255, 255, 255, ${this.opacity * 0.1})`);
-        
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      }
-    }
-    
-    // Array to store particles
-    let particles = [];
-    
-    // Mouse and touch position variables
-    let mouseX = 0;
-    let mouseY = 0;
-    let isMouseMoving = false;
-    let lastMouseX = 0;
-    let lastMouseY = 0;
-    let lastMoveTime = 0;
-    
-    // Throttle mouse/touch movement to improve performance
-    const throttleMove = (x, y, isTouch = false) => {
-      const now = Date.now();
-      if (now - lastMoveTime < 16) return; // Limit to ~60fps
-      lastMoveTime = now;
-
-      mouseX = x;
-      mouseY = y;
-      isMouseMoving = true;
-      
-      // Calculate movement distance to scale particle creation
-      const moveDistance = Math.sqrt(
-        Math.pow(mouseX - lastMouseX, 2) + 
-        Math.pow(mouseY - lastMouseY, 2)
-      );
-      
-      // Generate fewer particles for touch events
-      const particlesToCreate = Math.min(Math.floor(moveDistance / (isTouch ? 10 : 5)), isTouch ? 3 : 5);
-      
-      for (let i = 0; i < particlesToCreate; i++) {
-        const offsetX = Math.random() * 10 - 5;
-        const offsetY = Math.random() * 10 - 5;
-        particles.push(new Particle(mouseX + offsetX, mouseY + offsetY));
-      }
-      
-      lastMouseX = mouseX;
-      lastMouseY = mouseY;
-    };
-    
-    // Handle mouse movement
-    const mouseMoveHandler = (e) => {
-      throttleMove(e.clientX, e.clientY, false);
-    };
-    document.addEventListener('mousemove', mouseMoveHandler);
-    
-    // Handle touch movement for mobile
-    const touchMoveHandler = (e) => {
-      e.preventDefault();
-      throttleMove(e.touches[0].clientX, e.touches[0].clientY, true);
-    };
-    document.addEventListener('touchmove', touchMoveHandler, { passive: false });
-    
-    // Animation loop
-    let animationFrameId;
-    const animate = () => {
-      // Apply semi-transparent fade effect
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Update and draw particles
-      particles.forEach((particle, index) => {
-        particle.update();
-        particle.draw();
-        
-        // Remove expired particles
-        if (particle.life <= 0 || particle.size <= 0.5 || particle.opacity <= 0) {
-          particles.splice(index, 1);
-        }
-      });
-      
-      // Add particles at mouse position when not moving
-      if (!isMouseMoving && Math.random() < 0.05 && particles.length < 200) {
-        particles.push(new Particle(mouseX, mouseY));
-      }
-      
-      isMouseMoving = false;
-      
-      // Limit total particles for performance
-      if (particles.length > 300) {
-        particles = particles.slice(-300);
-      }
-      
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    
-    // Start animation
-    animate();
-    
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      document.removeEventListener('mousemove', mouseMoveHandler);
-      document.removeEventListener('touchmove', touchMoveHandler);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-  
-  return (
-    <canvas 
-      ref={canvasRef} 
-      id="smokeCanvas"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 5, // Above background, below header
-        pointerEvents: 'none'
-      }}
-    />
-  );
-};
+import SmokeyCursor from '../components/SmokeyCursor';
 
 const HomePage = () => {
-  // States
+  // All your state definitions and hooks
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeProperty, setActiveProperty] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -263,8 +89,8 @@ const HomePage = () => {
       </AnimatePresence>
 
       {/* Smoke Effect Canvas */}
-      <SmokeCanvas />
-
+      <SmokeyCursor />
+      
       {/* Header with fixed navigation */}
       <header className={`fixed w-full top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrollY > 50 ? 'bg-black bg-opacity-90 backdrop-blur-sm py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent py-6'
