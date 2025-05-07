@@ -4,7 +4,7 @@ import Link from 'next/link';
 import SmokeyCursor from '../components/SmokeyCursor';
 
 const HomePage = () => {
-  // All your state definitions and hooks
+  // State and hooks
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeProperty, setActiveProperty] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -37,7 +37,6 @@ const HomePage = () => {
     }
   };
   
-
   // Handle scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -88,8 +87,13 @@ const HomePage = () => {
         )}
       </AnimatePresence>
 
-      {/* Smoke Effect Canvas */}
-      <SmokeyCursor />
+      {/* Plain background - lowest layer */}
+      <div className="fixed inset-0 bg-black z-0"></div>
+
+      {/* Smoke Effect Canvas - just above background, below content */}
+      <div className="fixed inset-0 z-[1]">
+        <SmokeyCursor />
+      </div>
       
       {/* Header with fixed navigation */}
       <header className={`fixed w-full top-0 left-0 right-0 z-40 transition-all duration-300 ${
@@ -252,11 +256,8 @@ const HomePage = () => {
       <div className="relative z-10">
         {/* Hero Section */}
         <section className="relative h-screen bg-black overflow-hidden flex items-center">
-          {/* Background Image with Overlay - we're using only black background */}
-          <div className="absolute inset-0 z-0 bg-black"></div>
-          
           {/* Hero Content */}
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-40">
             <div className="max-w-xl mx-auto text-center">
               <motion.h1 
                 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
@@ -427,8 +428,8 @@ const HomePage = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ 
                     y: -10, 
-                    boxShadow: "0 25px 50px -12px rgba(199, 165, 101, 0.3)",
-                    borderColor: "rgba(199, 165, 101, 0.5)"
+                    boxShadow: "0 25px 50px -12px rgba(199,165,101,0.3)",
+                    borderColor: "rgba(199,165,101,0.5)"
                   }}
                 >
                   <div className="relative h-56 overflow-hidden">
@@ -454,7 +455,7 @@ const HomePage = () => {
                     </p>
                     
                     <div className="flex justify-between items-center mb-6">
-                      <div className="text-2xl font-bold text-[#c7a565]">AED {property.price.toLocaleString()}</div>
+                      <div className="text-2xl font-bold text-[#c7a565]">{formatPrice(property.price)}</div>
                     </div>
                     
                     <div className="flex justify-between items-center mb-6">
@@ -547,7 +548,7 @@ const HomePage = () => {
                   title: "Luxury Property Tours",
                   description: "Experience virtual or in-person tours of exclusive properties with our dedicated agents.",
                   icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 26" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                   )
@@ -752,7 +753,7 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(199, 165, 101, 0.25)" }}
+                  whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(199,165,101,0.25)" }}
                 >
                   <div className="p-8">
                     <div className="flex justify-center mb-6">
@@ -851,7 +852,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 
-                <div class="mt-12">
+                <div className="mt-12">
                   <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
                   <div className="flex space-x-4">
                     {['facebook', 'twitter', 'instagram', 'linkedin'].map((social, index) => (
@@ -924,7 +925,7 @@ const HomePage = () => {
                   
                   <motion.button 
                     type="submit"
-                    className="w-full py-3 bg-[#c7a565] text-black rounded-lg font-medium hover:shadow-[0_0_20px_rgba(199,165,101,0.4)] transition-all"
+                    className="w-full py-3 bg-[#c7a565] text-black rounded-lg font \n                    font-medium hover:shadow-[0_0_20px_rgba(199,165,101,0.4)] transition-all"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -947,7 +948,7 @@ const HomePage = () => {
                 </div>
                 
                 <p className="text-gray-400 mb-6">
-                  Fabrica Real Estate provides premium property solutions in Dubai's most desirable locations.
+                  Fabrica Real Estate provides premium property solutions in Dubais most desirable locations.
                 </p>
               </div>
               
